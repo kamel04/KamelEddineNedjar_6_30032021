@@ -1,0 +1,19 @@
+{
+  "name": "kameleddinenedjar_6_30032021",
+  "version": "1.0.0",
+  "description": "Projet 6 Fishaye",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamel04/KamelEddineNedjar_6_30032021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kamel04/KamelEddineNedjar_6_30032021/issues"
+  },
+  "homepage": "https://github.com/kamel04/KamelEddineNedjar_6_30032021#readme"
+}

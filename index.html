@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FishEye home</title>
+
+    <script
+      src="https://kit.fontawesome.com/f17c906855.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="public/css/style.css" />
+  </head>
+  <body>
+    <header class="header" aria-label="banner">
+      <a href="index.html" tabindex="0">
+        <img
+          src="public/img/FishEyeLOGO.png"
+          alt="FishEye Home page"
+          class="header-logo"
+        />
+      </a>
+      <nav class="header-nav" aria-label="photographes taggés">
+        <ul class="tagList" id="nav-taglist" tabindex="0" aria-label="tags">
+          <li><a tabindex="-1">#Portrait</a></li>
+          <li><a tabindex="-1">#Art</a></li>
+          <li><a tabindex="-1">#Fashion</a></li>
+          <li><a tabindex="-1">#Architecture</a></li>
+          <li><a tabindex="-1">#Travel</a></li>
+          <li><a tabindex="-1">#Sport</a></li>
+          <li><a tabindex="-1">#Animals</a></li>
+          <li><a tabindex="-1">#Events</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main" aria-label="main">
+      <h1 class="main-titel" tabindex="0">Nos photographes</h1>
+      <section class="main-content" id="photographer-gallery">
+        <!-- Exemple cartes photographes -->
+        <h2 class="photographerCard-name">
+          <a href="photograph_page.html">
+            <img
+              class="photograph-logo"
+              src="public/img/photographID/MimiKeel.jpg"
+              alt="Mimi Keel"
+            />
+            Mimi Keel
+          </a>
+        </h2>
+
+        <p class="photographerCard-desc">
+          <strong>London, UK</strong> <br />Voir le beau dans le quotidien<br />
+          <em>400€/jour</em>
+        </p>
+
+        <ul class="tagList">
+          <li><a>#Portrait</a></li>
+          <li><a>#Events</a></li>
+          <li><a>#Travel</a></li>
+          <li><a>#Animals</a></li>
+        </ul>
+      </section>
+    </main>
+    <script src="public/script/mainContent.js"></script>
+  </body>
+</html>
