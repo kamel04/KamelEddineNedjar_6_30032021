@@ -1,0 +1,39 @@
+.skipToContent {
+  border-radius: 5px;
+  background-color: #db8876;
+  color: #000;
+  padding: 2px 20px;
+  font-size: 18px;
+  text-align: center;
+  width: fit-content;
+  position: absolute;
+  top: 5px;
+  --leftPosSkip: calc(50% - 85px);
+  left: var(--leftPosSkip);
+}
+
+.main {
+  &-title {
+    position: absolute;
+    top: 35px;
+    white-space: nowrap;
+    --leftPos: calc(50% + 300px);
+    @media (max-width: $breakpoint-minTablet) {
+      --leftPos: calc(52%);
+    }
+    @media (max-width: $breakpoint-minMobile) {
+      --leftPos: calc(60%);
+      top: 50px;
+    }
+    left: var(--leftPos);
+  }
+
+  &-content {
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-around;
+    align-content: space-between;
+    flex-wrap: wrap;
+  }
+}
