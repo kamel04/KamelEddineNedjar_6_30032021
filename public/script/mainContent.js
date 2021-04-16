@@ -7,7 +7,6 @@ const tagSelectListChild = tagSelectList.children;
 // ------Charger les données-----//
 let URL =
   "https://kamel04.github.io/KamelEddineNedjar_6_30032021/public/data/FishEyeDataFR.json";
-
 fetch(URL)
   .then((res) => res.json())
   .then((data) => {
