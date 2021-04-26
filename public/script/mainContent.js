@@ -4,27 +4,67 @@ const photographerGallery = document.getElementById("photographer-gallery");
 const tagSelectList = document.getElementById("nav-taglist");
 const tagSelectListChild = tagSelectList.children;
 
-// ------Charger les données-----//
-let URL =
+const URL =
   "https://kamel04.github.io/KamelEddineNedjar_6_30032021/public/data/FishEyeDataFR.json";
+
+// ------Charger les données-----//
+
 fetch(URL)
   .then((res) => res.json())
   .then((data) => {
-    console.log(data);
-    // console.log(data.photographers[0].name);
-    // console.log(data.photographers[0].city);
-    // console.log(data.photographers[0].country);
-    // console.log(data.photographers[0].tagline);
-    // console.log(data.photographers[0].price);
-
+    //console.log(data);
     const photographers = data.photographers;
+    //console.log(photographers);
     for (let i = 0; i < photographers.length; i++) {
       photographers[i] = new Photographe(photographers[i]);
       photographerGallery.appendChild(photographers[i].generateCard());
     }
+
+    //////////////////////////////////////////////////////////////////////////////
+
+    //------filtrer Données par tag-----//
+
+    for (let i = 0; i < tagSelectListChild.length; i++) {
+      tagSelectListChild[i].addEventListener("click", (e) => {
+        tagSelectListChild[i].classList.add("tagActive");
+
+        for (let n = 0; n < tagSelectListChild.length; n++) {
+          if (n != i) {
+            tagSelectListChild[n].classList.remove("tagActive");
+          }
+        }
+        const tagSelected = tagSelectListChild[i].textContent
+          .slice(1)
+          .toLowerCase();
+
+        tagSelection(tagSelected);
+      });
+    }
+
+    //------Afficher Photographes avec filtre tag-----//
+    function tagSelection(tagSelected) {
+      const photographerCardList = photographerGallery.children;
+
+      for (let i = 0; i < photographers.length; i++) {
+        let displayPhotographer = false;
+
+        for (let n = 0; n < photographers[i].tags.length; n++) {
+          if (photographers[i].tags[n] == tagSelected) {
+            displayPhotographer = true;
+          }
+        }
+        if (displayPhotographer) {
+          photographerCardList[i].style.display = "block";
+        } else {
+          photographerCardList[i].style.display = "none";
+        }
+      }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
   });
 
-// ------Crée Données du Photographe-----//
+//------Crée Données du Photographe-----//
 function Photographe(data) {
   this.id = data.id;
   this.portrait = data.portrait;
@@ -50,7 +90,7 @@ function Photographe(data) {
     photographerTags.setAttribute("aria-label", "Tags");
 
     photographerName.innerHTML =
-      '<a href="photographPage.html?id=' +
+      '<a href="photograph_page.html?id=' +
       this.id +
       '"> <img class="photograph-logo" src="public/img/photographID/' +
       this.portrait +
@@ -80,6 +120,17 @@ function Photographe(data) {
     return photographerCard;
   };
 }
+
+const header = document.querySelector(".header");
+let headerHeight = header.clientHeight + 40;
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > headerHeight) {
+    skipeToContent.style.display = "block";
+  } else {
+    skipeToContent.style.display = "none";
+  }
+});
 
 //--------HTML carte Photographe-------//
 /* <div class="photographer-card">

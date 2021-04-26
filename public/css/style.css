@@ -110,6 +110,11 @@ a {
   margin: 3px;
 }
 
+.tagActive {
+  color: #ffffff;
+  background-color: #901c1c;
+}
+
 .header {
   display: flex;
   margin-left: 50px;
@@ -144,6 +149,7 @@ a {
 }
 
 .skipToContent {
+  display: none;
   border-radius: 5px;
   background-color: #db8876;
   color: #000;
@@ -151,10 +157,11 @@ a {
   font-size: 18px;
   text-align: center;
   width: fit-content;
-  position: absolute;
+  position: fixed;
   top: 5px;
   --leftPosSkip: calc(50% - 85px);
   left: var(--leftPosSkip);
+  transition: all 0.5s ease-in-out;
 }
 
 .main-title {
@@ -181,6 +188,134 @@ a {
   justify-content: space-around;
   align-content: space-between;
   flex-wrap: wrap;
+}
+
+.photographProfile {
+  padding: 10px 0;
+  margin: 30px 10px;
+  background-color: #fafafa;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 425px) {
+  .photographProfile {
+    background-color: #ffffff;
+    margin: 0;
+  }
+}
+.photographProfile .tagList {
+  justify-content: flex-start;
+}
+.photographProfile .tagList li {
+  font-size: 18px;
+  font-weight: bold;
+}
+@media (max-width: 425px) {
+  .photographProfile .tagList li {
+    font-size: 13px;
+    font-weight: bold;
+  }
+}
+.photographProfile-desc {
+  margin-left: 40px;
+}
+@media (max-width: 425px) {
+  .photographProfile-desc {
+    margin-left: 20px;
+  }
+}
+.photographProfile-desc h1 {
+  color: #d3573c;
+  font-size: 64px;
+}
+@media (max-width: 425px) {
+  .photographProfile-desc h1 {
+    font-size: 36px;
+  }
+}
+.photographProfile-desc p {
+  font-size: 18px;
+  color: #525252;
+  margin-bottom: 20px;
+  color: #757575;
+}
+@media (max-width: 425px) {
+  .photographProfile-desc p {
+    font-size: 13px;
+    margin-bottom: 9px;
+  }
+}
+.photographProfile-desc p strong {
+  font-size: 24px;
+  display: inline-block;
+  margin: 4px 0;
+}
+@media (max-width: 425px) {
+  .photographProfile-desc p strong {
+    font-size: 13px;
+  }
+}
+.photographProfile-button {
+  background-color: #901c1c;
+  color: #ffffff;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 20px 25px;
+  max-height: 60px;
+  margin-top: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.photographProfile-button:hover {
+  background-color: #db8876;
+  color: #000000;
+}
+@media (max-width: 1215px) {
+  .photographProfile-button {
+    position: fixed;
+    bottom: 30px;
+    left: calc(50% - 85px);
+    width: 170px;
+    font-size: 18px;
+  }
+}
+.photographProfile-photo img {
+  max-width: 240px;
+  max-height: 240px;
+  min-width: 240px;
+  min-height: 240px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 40px;
+}
+@media (max-width: 425px) {
+  .photographProfile-photo img {
+    max-width: 100px;
+    max-height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+}
+
+.gallery {
+  margin: 0 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+@media (max-width: 425px) {
+  .gallery {
+    margin: 0 10px;
+    flex-direction: column;
+    align-content: space-around;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

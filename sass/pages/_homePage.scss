@@ -1,4 +1,5 @@
 .skipToContent {
+  display: none;
   border-radius: 5px;
   background-color: #db8876;
   color: #000;
@@ -6,10 +7,11 @@
   font-size: 18px;
   text-align: center;
   width: fit-content;
-  position: absolute;
+  position: fixed;
   top: 5px;
   --leftPosSkip: calc(50% - 85px);
   left: var(--leftPosSkip);
+  transition: all 0.5s ease-in-out;
 }
 
 .main {

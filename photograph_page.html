@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FishEye photographes</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://kit.fontawesome.com/f17c906855.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="public/css/style.css" />
+  </head>
+  <body>
+    <section id="mainBody">
+      <header class="header" aria-label="banner">
+        <a href="index.html" tabindex="0">
+          <img class="header-logo" src="public/img/FishEyeLOGO.png" alt="Fisheye Home page" />
+        </a>
+      </header>
+
+      <main class="main" aria-label="main">
+        <section class="photographProfile">
+          <div class="photographProfile-desc">
+            <h1 id="photographerName" tabindex="0"></h1>
+            <p id="photographerDesc" tabindex="0"></p>
+            <ul class="tagList" id="photographerTags" tabindex="0" aria-label="Tags"></ul>
+          </div>
+
+          <button class="photographProfile-button" id="modalForm_open" aria-label="Contact Me">
+            Contact me
+          </button>
+
+          <div class="photographProfile-photo" id="photographerProfilePhoto"></div>
+        </section>
+
+        <div class="selectMenu">
+          <label for="selectedOrder" tabindex="0">Trier par</label>
+          <select id="selectedOrder">
+            <option value="popularity">Popularité</option>
+            <option value="date">Date</option>
+            <option value="title">Titre</option>
+          </select>
+        </div>
+
+        <footer class="photographerNumbers">
+          <span id="photographerLikes" tabindex="0"> </span>
+          <span id="photographerPrice" tabindex="0"> </span>
+        </footer>
+
+        <section class="gallery" id="mediaGallery"></section>
+      </main>
+    </section>
+    <div tabindex="0" role="dialogue" class="modalForm"></div>
+    <div class="modalMedia"></div>
+
+    <script src="public/script/photographerContent.js"></script>
+  </body>
+</html>
