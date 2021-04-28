@@ -23,15 +23,19 @@ fetch(URL)
     const photographerList = data.photographers;
     const photographerIndex = getPhotographer(photographerID, photographerList);
     const photographerMediaList = getPhotographerMediaList(photographerID, mediaList);
-    console.log(photographerMediaList);
     let orderPopularity = generateOrderList(photographerMediaList, "popularity");
     const orderDate = generateOrderList(photographerMediaList, "date");
     const orderAlt = generateOrderList(photographerMediaList, "alt");
     const gallerySize = photographerMediaList.length;
     selectedOrder = orderPopularity;
 
+    console.log(photographerIndex);
+    console.log(photographerList);
+    console.log(photographerMediaList);
+    console.log(selectedOrder);
+
     generateProfile(photographerIndex, photographerList, photographerMediaList);
-    generateGallery(photographerMediaList);
+    generateGallery(photographerMediaList, selectedOrder);
   });
 
 // sélectionner le photographe en fonction de son id
@@ -92,6 +96,7 @@ function generateOrderList(mediaList, type) {
 // Génère le profil du photographe et le footer
 function generateProfile(index, photographerList, photographerMediaList) {
   const photographer = photographerList[index];
+
   let sumOfLikes = 0;
   for (let i = 0; i < photographerMediaList.length; i++) {
     sumOfLikes += photographerMediaList[i].likes;
@@ -130,7 +135,9 @@ function generateGallery(mediaList, orderList) {
   }
 
   for (let i = 0; i < mediaList.length; i++) {
-    console.log(mediaList[orderList[i].index]);
+    //console.log(mediaList);
+    console.log(orderList[0]);
+
     gallery.appendChild(generateMediaCard(mediaList[orderList[i].index]));
   }
 }
@@ -141,18 +148,18 @@ function generateGallery(mediaList, orderList) {
 
 // appel de la factory pour fabriquer les mediaCards
 function generateMediaCard(media) {
-  let card = new mediaCardParts("card", media);
-  let desc = new mediaCardParts("desc", media);
+  let cardObj = new mediaCardParts("card", media);
+  let descObj = new mediaCardParts("desc", media);
 
   if (media.image == undefined) {
-    let mediaObj = new mediaCardParts("video", media);
+    var mediaObj = new mediaCardParts("video", media);
   } else {
-    let mediaObj = new mediaCardParts("image", media);
+    var mediaObj = new mediaCardParts("image", media);
   }
-  card.mediaCard.appendChild(mediaObj.media);
-  card.mediaCard.appendChild(desc.mediaDesc);
+  cardObj.mediaCard.appendChild(mediaObj.mediaMedia);
+  cardObj.mediaCard.appendChild(descObj.mediaDesc);
 
-  return card.mediaCard;
+  return cardObj.mediaCard;
 }
 
 class mediaCardParts {
@@ -162,15 +169,15 @@ class mediaCardParts {
     }
 
     if (type === "desc") {
-      return new MediaFactory_desc();
+      return new MediaFactory_desc(mediaData);
     }
 
     if (type === "video") {
-      return new MediaFactory_video();
+      return new MediaFactory_video(mediaData);
     }
 
     if (type === "image") {
-      return new MediaFactory_img();
+      return new MediaFactory_img(mediaData);
     }
   }
 }
@@ -186,12 +193,12 @@ class MediaFactory_card {
 //fabrique des médias image
 class MediaFactory_img {
   constructor(mediaData) {
-    this.media = document.createElement("div");
-    this.media.classList.add("mesiaCard-img");
-    this.media.classList.add("modalMedia-open");
-    this.media.innerHTML =
+    this.mediaMedia = document.createElement("div");
+    this.mediaMedia.classList.add("mediaCard-img");
+    this.mediaMedia.classList.add("modalMedia-open");
+    this.mediaMedia.innerHTML =
       '<a href="#"> <img src="public/img/media"' +
-      photographer.name +
+      //"photographer.name" +
       mediaData.image +
       ' alt ="vue rapprochée " ' +
       mediaData.alt +
@@ -202,12 +209,12 @@ class MediaFactory_img {
 //fabrique des médias vidéo
 class MediaFactory_video {
   constructor(mediaData) {
-    this.media = document.createElement("div");
-    this.media.classList.add("mesiaCard-img");
-    this.media.classList.add("modalMedia-open");
-    this.media.innerHTML =
+    this.mediaMedia = document.createElement("div");
+    this.mediaMedia.classList.add("mesiaCard-img");
+    this.mediaMedia.classList.add("modalMedia-open");
+    this.mediaMedia.innerHTML =
       '<a href="#"> <video src="public/img/media"' +
-      photographer.name +
+      //"photographer.name" +
       mediaData.image +
       ' alt ="Vidéo de " ' +
       mediaData.alt +
@@ -222,7 +229,7 @@ class MediaFactory_desc {
     this.mediaPrice = document.createElement("p");
     this.mediaLike = document.createElement("p");
 
-    this.mediaData.classList.add("mediaCard-desc");
+    this.mediaDesc.classList.add("mediaCard-desc");
     this.mediaName.classList.add("madiaCard-desc-name");
     this.mediaName.setAttribute("tabindex", "0");
     this.mediaPrice.classList.add("mediaCard-desc-number");
