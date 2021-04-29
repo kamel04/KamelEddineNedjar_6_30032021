@@ -135,9 +135,6 @@ function generateGallery(mediaList, orderList) {
   }
 
   for (let i = 0; i < mediaList.length; i++) {
-    //console.log(mediaList);
-    console.log(orderList[0]);
-
     gallery.appendChild(generateMediaCard(mediaList[orderList[i].index]));
   }
 }
@@ -196,13 +193,14 @@ class MediaFactory_img {
     this.mediaMedia = document.createElement("div");
     this.mediaMedia.classList.add("mediaCard-img");
     this.mediaMedia.classList.add("modalMedia-open");
+
+    // <a href="#"><img src="public/img/FishEyeLOGO.png" alt="FishEye Home page" class="header-logo"/></a>
     this.mediaMedia.innerHTML =
-      '<a href="#"> <img src="public/img/media"' +
-      //"photographer.name" +
+      '<a href="#"><img src="public/img/media/' +
       mediaData.image +
-      ' alt ="vue rapprochée " ' +
+      '" alt ="vue rapprochée " ' +
       mediaData.alt +
-      " </a>";
+      "/></a>";
   }
 }
 
@@ -210,15 +208,16 @@ class MediaFactory_img {
 class MediaFactory_video {
   constructor(mediaData) {
     this.mediaMedia = document.createElement("div");
-    this.mediaMedia.classList.add("mesiaCard-img");
+    this.mediaMedia.classList.add("mediaCard-img");
     this.mediaMedia.classList.add("modalMedia-open");
     this.mediaMedia.innerHTML =
-      '<a href="#"> <video src="public/img/media"' +
-      //"photographer.name" +
-      mediaData.image +
-      ' alt ="Vidéo de " ' +
+      '<a href="#"><video alt ="Vidéo de ' +
       mediaData.alt +
-      ' type="video/mp4" /video> </a>';
+      '"> <source src="public/img/media/' +
+      mediaData.video +
+      '" type="video/mp4">' +
+      mediaData.alt +
+      "</video></a>";
   }
 }
 
@@ -230,7 +229,7 @@ class MediaFactory_desc {
     this.mediaLike = document.createElement("p");
 
     this.mediaDesc.classList.add("mediaCard-desc");
-    this.mediaName.classList.add("madiaCard-desc-name");
+    this.mediaName.classList.add("mediaCard-desc-name");
     this.mediaName.setAttribute("tabindex", "0");
     this.mediaPrice.classList.add("mediaCard-desc-number");
     this.mediaName.setAttribute("tabindex", "0");
