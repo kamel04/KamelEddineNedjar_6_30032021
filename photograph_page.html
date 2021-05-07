@@ -30,7 +30,7 @@
             <ul class="tagList" id="photographerTags" tabindex="0" aria-label="Tags"></ul>
           </div>
 
-          <button class="photographProfile-button" id="modalForm_open" aria-label="Contact Me">
+          <button class="photographProfile-button" id="modalForm-open" aria-label="Contact Me">
             Contactez-moi
           </button>
 
@@ -54,9 +54,96 @@
         <section class="gallery" id="mediaGallery"></section>
       </main>
     </section>
-    <div tabindex="0" role="dialogue" class="modalForm"></div>
-    <div class="modalMedia"></div>
+
+    <div
+      role="dialog"
+      tabindex="0"
+      class="modalForm"
+      id="modalForm"
+      aria-modal="true"
+      aria-labelledby="modalForm_title"
+    >
+      <div class="modalForm-body">
+        <h1 id="modalForm-title" tabindex="0"></h1>
+        <form
+          tabindex="0"
+          name="reserve"
+          action="photographPage.html"
+          method="get"
+          onsubmit="return validate();"
+        >
+          <div class="formData">
+            <label for="first">Prénom</label>
+            <input class="text-control" type="text" id="first" name="first" />
+          </div>
+          <span class="msg-error" id="first-errorMessage" role="alert"></span>
+
+          <div class="formData">
+            <label for="last">Nom</label>
+            <input class="text-control" type="text" id="last" name="last" />
+          </div>
+          <span class="msg-error" id="last-errorMessage" role="alert"></span>
+
+          <div class="formData">
+            <label for="email">Email</label>
+            <input class="text-control" type="email" id="email" name="email" />
+          </div>
+          <span class="msg-error" id="email-errorMessage" role="alert"></span>
+
+          <div class="formData">
+            <label for="message">Votre message</label>
+            <textarea
+              class="text-control text-control-message"
+              id="message"
+              name="message"
+              rows="4"
+              cols="50"
+            ></textarea>
+          </div>
+          <span class="msg-error" id="message-errorMessage" role="alert"> </span>
+
+          <input
+            type="submit"
+            id="modalForm-submit"
+            class="button"
+            value="Envoyer"
+            aria-label="Envoyer"
+          />
+          <span class="msg-submitSuccess" id="message-submitSucess" role="alert">
+            Message envoyé avec succès !
+          </span>
+        </form>
+      </div>
+      <span class="close closeModal-btn" id="modalForm-close">
+        <a href="#" aria-label="Close Contact form"> <i class="fas fa-times"></i> </a>
+      </span>
+    </div>
+
+    <div
+      role="dialog"
+      tabindex="0"
+      class="modalMedia"
+      id="modalMedia"
+      aria-label="image closup view"
+      aria-modal="true"
+    >
+      <div class="modalMedia-body">
+        <div id="imgShow"></div>
+        <p tabindex="0" id="imgName"></p>
+        <span class="navButton navButton-left" id="navButton-left">
+          <a href="#" aria-label="Previous image"> <i class="fas fa-chevron-left"></i> </a>
+        </span>
+        <span class="navButton navButton-right" id="navButton-right">
+          <a href="#" aria-label="Next image"> <i class="fas fa-chevron-right"></i></a>
+        </span>
+      </div>
+      <span class="modalMedia-close" id="modalMedia-close">
+        <a href="#" aria-label="Close dialog"> <i class="fas fa-times"></i></a>
+      </span>
+    </div>
 
     <script src="public/script/photographerContent.js"></script>
+    <script src="public/script/modalForm.js"></script>
+    <script src="public/script/modalMedia.js"></script>
   </body>
 </html>

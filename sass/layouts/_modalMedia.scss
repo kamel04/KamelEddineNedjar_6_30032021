@@ -1,0 +1,97 @@
+.modalMedia {
+  display: none;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+  padding-top: 40px;
+
+  @media (max-width: $breakpoint-minMobile) {
+    //height: 800px;
+    padding-top: 250px;
+  }
+
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: $color-secondaryEmpty-background;
+  overflow: hidden;
+
+  &-body {
+    max-height: 900px;
+    @media (max-width: $breakpoint-minMobile) {
+      height: 300px;
+    }
+
+    & img,
+    video {
+      height: 850px;
+      width: 1050px;
+      object-fit: cover;
+
+      margin-left: calc(50% - 525px);
+
+      @media (max-width: $breakpoint-minMobile) {
+        height: 250px;
+        width: 300px;
+        margin-left: calc(50% - 150px);
+      }
+    }
+
+    & p {
+      font-size: 24px;
+      color: $color-secondaryEmpty-text;
+      margin-left: calc(50% - 525px);
+
+      @media (max-width: $breakpoint-minMobile) {
+        font-size: 14px;
+        margin-left: calc(50% - 150px);
+      }
+    }
+  }
+
+  &-close {
+    position: absolute;
+    top: 40px;
+    left: calc(50% + 550px);
+    font-size: 60px;
+    color: $color-secondaryEmpty-text;
+    cursor: pointer;
+
+    @media (max-width: $breakpoint-minMobile) {
+      top: 250px;
+      left: calc(50% + 160px);
+      font-size: 25px;
+    }
+  }
+}
+
+.navButton {
+  font-size: 60px;
+  color: $color-secondaryEmpty-text;
+  cursor: pointer;
+  position: absolute;
+  top: 425px;
+
+  @media (max-width: $breakpoint-minMobile) {
+    top: 370px;
+    font-size: 25px;
+  }
+
+  &-left {
+    right: calc(50% + 550px);
+    @media (max-width: $breakpoint-minMobile) {
+      right: calc(50% + 160px);
+    }
+  }
+
+  &-right {
+    left: calc(50% + 550px);
+    @media (max-width: $breakpoint-minMobile) {
+      left: calc(50% + 160px);
+    }
+  }
+}

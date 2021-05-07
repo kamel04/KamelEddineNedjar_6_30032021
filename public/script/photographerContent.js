@@ -36,6 +36,129 @@ fetch(URL)
 
     generateProfile(photographerIndex, photographerList, photographerMediaList);
     generateGallery(photographerMediaList, selectedOrder);
+    generateModalMediaClick();
+
+    // Appliquer le tri de selection
+    selectOrder_roll.addEventListener("change", (e) => {
+      if (e.target.value == "date") {
+        selectedOrder = orderDate;
+      } else if (e.target.value == "title") {
+        selectedOrder = orderAlt;
+      } else {
+        selectedOrder = orderPopularity;
+      }
+      generateGallery(photographerMediaList, selectedOrder);
+      generateModalMediaClick();
+      console.log(selectedOrder);
+    });
+
+    // Récupérer les donnée de l'index
+    function getModalMedia(modalIndex) {
+      const index = selectedOrder[modalIndex].index;
+      return photographerMediaList[index];
+    }
+
+    // Générer la modale des médias
+    function generateFocusElement(modalIndex) {
+      const media = getModalMedia(modalIndex);
+      if (media.image == undefined) {
+        imgShow.innerHTML =
+          '<video tabIndex=0 controls> <source src="public/img/media/' +
+          media.video +
+          '" type="video/mp4">' +
+          media.alt +
+          "</video>";
+      } else {
+        imgShow.innerHTML =
+          '<a href="#"><img src="public/img/media/' +
+          media.image +
+          '" alt ="vue rapprochée " ' +
+          media.alt +
+          "/></a>";
+      }
+      imgName.innerHTML = media.alt;
+    }
+
+    // évènement passer au média suivant
+    nextImg.addEventListener("click", ($e) => {
+      $e.preventDefault();
+      goToNextImg();
+    });
+
+    function goToNextImg() {
+      modalMediaIndex = makeItRoll(modalMediaIndex, gallerySize, "forward");
+      generateFocusElement(modalMediaIndex);
+      imgShow.firstChild.focus();
+    }
+
+    // évènement passer au média précédent
+    prevImg.addEventListener("click", ($e) => {
+      $e.preventDefault();
+      goToPrevImg();
+    });
+
+    function goToPrevImg() {
+      modalMediaIndex = makeItRoll(modalMediaIndex, gallerySize, "backward");
+      generateFocusElement(modalMediaIndex);
+      imgShow.firstChild.focus();
+    }
+
+    // navigation au clavier
+    modalMedia.addEventListener("keyup", function (e) {
+      if (e.key === "Escape") {
+        closeModalMedia();
+      }
+      if (e.key == "ArrowLeft") {
+        goToPrevImg();
+      }
+      if (e.key == "ArrowRight") {
+        goToNextImg();
+      }
+    });
+
+    // Clique sur un média ou sur un like
+    function generateModalMediaClick() {
+      let modalMediaOpener = document.getElementsByClassName("modalMedia-open");
+      let likeButton = document.getElementsByClassName("add-like-btn");
+
+      for (let i = 0; i < modalMediaOpener.length; i++) {
+        modalMediaOpener[i].addEventListener("click", () => {
+          launchModalMedia();
+          modalMediaIndex = i;
+          generateFocusElement(modalMediaIndex);
+          modalMedia.focus();
+        });
+
+        likeButton[i].addEventListener("click", () => {
+          likeButton[i].innerHTML =
+            parseInt(likeButton[i].textContent, 10) + 1 + '<i class="fas fa-heart"></i>';
+          photographerLikes.innerHTML =
+            parseInt(photographerLikes.textContent, 10) + 1 + '<i class="fas fa-heart"></i>';
+
+          for (let j = 0; j < photographerMediaList.length; j++) {
+            if (orderPopularity[i].alt == photographerMediaList[j].alt) {
+              photographerMediaList[j].likes = parseInt(photographerMediaList[j].likes) + 1;
+            }
+          }
+
+          if (i > 0) {
+            if (
+              photographerMediaList[orderPopularity[i].index].likes >
+              photographerMediaList[orderPopularity[i - 1].index].likes
+            ) {
+              let temp = orderPopularity[i];
+              orderPopularity[i] = orderPopularity[i - 1];
+              orderPopularity[i - 1] = temp;
+              if (selectOrder_roll.value == "popularity") {
+                selectedOrder = orderPopularity;
+                generateGallery(photographerMediaList, selectedOrder);
+                generateModalMediaClick();
+              }
+            }
+          }
+        });
+      }
+    }
   });
 
 // sélectionner le photographe en fonction de son id
@@ -77,11 +200,11 @@ function generateOrderList(mediaList, type) {
     return orderList.sort(function (a, b) {
       if (a.alt < b.alt) {
         return -1;
-      } else if (a.alt > b.alt) {
-        return 1;
-      } else {
-        return 0;
       }
+      if (a.alt > b.alt) {
+        return 1;
+      }
+      return 0;
     });
   } else if (type == "date") {
     return orderList.sort(function (a, b) {
@@ -124,7 +247,9 @@ function generateProfile(index, photographerList, photographerMediaList) {
     '" >';
   photographerLikes.innerHTML =
     sumOfLikes + ' <em class="invisible"> likes</em> <i class="fas fa-heart"></i>';
-  photographerPrice.innerHTML = photographer.price + "$ / day";
+  photographerPrice.innerHTML = photographer.price + "€ / jour";
+
+  modalForm_title.innerHTML = "Contactez-moi <br>" + photographer.name;
 }
 
 //Génère la galerie du photographe
@@ -240,7 +365,8 @@ class MediaFactory_desc {
     this.mediaName.innerHTML = mediaData.alt;
     this.mediaPrice.innerHTML = mediaData.price + " €";
     this.mediaLike.innerHTML =
-      '<em class="invisible"> likes</em> <i class="fas fa-heart" aria-label="likes></i>';
+      mediaData.likes +
+      ' <em class="invisible">likes</em><i class="fas fa-heart" aria-label="likes"></i>';
 
     this.mediaDesc.appendChild(this.mediaName);
     this.mediaDesc.appendChild(this.mediaPrice);

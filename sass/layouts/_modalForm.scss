@@ -1,0 +1,154 @@
+.button {
+  background: $color-primaryFilled-background;
+  color: $color-primaryFilled-text;
+
+  margin-top: 20px;
+  padding: 1em;
+
+  width: 170px;
+  height: 70px;
+  border-radius: 5px;
+
+  font-size: 18px;
+  border: 0;
+  cursor: pointer;
+
+  @media (max-width: $breakpoint-minMobile) {
+    height: 35px;
+    line-height: 20px;
+    margin: 10px 0px;
+    margin-left: calc(50% - 85px);
+  }
+}
+
+.modalForm {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: calc(50% - 250px);
+  @media (max-width: 669px) {
+    left: 0;
+  }
+
+  @media (max-width: $breakpoint-minTablet) {
+    left: calc(50% - 335px);
+    top: 60px;
+  }
+
+  @media (max-width: $breakpoint-minMobile) {
+    left: 0%; //calc(50% - 335px);
+    top: 60px;
+  }
+
+  margin: 5% auto;
+  width: 100%;
+  max-width: 669px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: $color-secondaryFilled-background;
+  border-radius: 10px;
+  overflow: hidden;
+
+  color: $color-secondaryFilled-text;
+  padding-top: 10px;
+
+  &-body {
+    padding: 10px 8%;
+    margin: 10px auto;
+
+    & h1 {
+      font-size: 64px;
+      color: $color-secondaryFilled-text;
+
+      @media (max-width: $breakpoint-minMobile) {
+        font-size: 36px;
+      }
+    }
+  }
+
+  & label {
+    font-family: var(--font-default);
+    font-size: 36px;
+    font-weight: normal;
+    display: inline-block;
+    margin-bottom: 2px;
+    margin-top: 10px;
+
+    @media (max-width: $breakpoint-minMobile) {
+      font-size: 24px;
+    }
+  }
+
+  & input {
+    padding: 8px;
+    border: 0.8px solid $color-primaryVoid-background;
+    outline: none;
+  }
+}
+
+.text-control {
+  margin: 0;
+  padding: 8px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 22px;
+  height: 52px;
+  outline: none;
+
+  @media (max-width: $breakpoint-minMobile) {
+    font-size: 18px;
+  }
+
+  &:focus {
+    border: $color-primaryFilled-background solid 4px;
+  }
+
+  &-message {
+    height: 184px;
+  }
+}
+
+.msg-error {
+  font-size: 18px;
+  color: $color-primaryFilled-text;
+  display: none;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  text-align: left;
+  @media (max-width: $breakpoint-minMobile) {
+    font-size: 14px;
+    margin-bottom: 0px;
+  }
+}
+
+.msg-submitSuccess {
+  font-size: 22px;
+  color: $color-primaryFilled-text;
+  display: none;
+  float: right;
+  margin-top: 40px;
+  margin-right: 40px;
+  text-align: center;
+  @media (max-width: $breakpoint-minMobile) {
+    font-size: 18px;
+    margin: 0 50px 0 0;
+    padding-bottom: 10px;
+  }
+}
+
+.close {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+
+  font-size: 40px;
+  color: $color-primaryFilled-text;
+
+  @media (max-width: $breakpoint-minMobile) {
+    font-size: 36px;
+    right: 15px;
+    top: 5px;
+  }
+
+  cursor: pointer;
+}
