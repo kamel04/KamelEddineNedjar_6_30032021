@@ -89,7 +89,9 @@ function Photographe(data) {
     photographerName.innerHTML =
       '<a href="photograph_page.html?id=' +
       this.id +
-      '"> <img class="photograph-logo" alt="avatar du photographe" src="public/img/photographID/' +
+      '"> <img class="photograph-logo" alt="avatar de ' +
+      this.name +
+      '" src="public/img/photographID/' +
       this.portrait +
       '"> <br>' +
       this.name +
