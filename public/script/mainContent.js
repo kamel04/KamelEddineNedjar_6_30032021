@@ -4,8 +4,7 @@ const photographerGallery = document.getElementById("photographer-gallery");
 const tagSelectList = document.getElementById("nav-taglist");
 const tagSelectListChild = tagSelectList.children;
 
-const URL =
-  "https://kamel04.github.io/KamelEddineNedjar_6_30032021/public/data/FishEyeDataFR.json";
+const URL = "https://kamel04.github.io/KamelEddineNedjar_6_30032021/public/data/FishEyeDataFR.json";
 
 // ------Charger les données-----//
 
@@ -33,9 +32,7 @@ fetch(URL)
             tagSelectListChild[n].classList.remove("tagActive");
           }
         }
-        const tagSelected = tagSelectListChild[i].textContent
-          .slice(1)
-          .toLowerCase();
+        const tagSelected = tagSelectListChild[i].textContent.slice(1).toLowerCase();
 
         tagSelection(tagSelected);
       });
@@ -92,7 +89,7 @@ function Photographe(data) {
     photographerName.innerHTML =
       '<a href="photograph_page.html?id=' +
       this.id +
-      '"> <img class="photograph-logo" src="public/img/photographID/' +
+      '"> <img class="photograph-logo" alt="avatar du photographe" src="public/img/photographID/' +
       this.portrait +
       '"> <br>' +
       this.name +
