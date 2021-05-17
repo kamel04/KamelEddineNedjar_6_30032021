@@ -242,7 +242,8 @@ function generateProfile(index, photographerList, photographerMediaList) {
     photographer.tagline +
     "<br>";
   for (var i = 0; i < photographer.tags.length; i++) {
-    const tag = document.createElement("li");
+    const tag = document.createElement("span"); ///// modif suite soutenance
+    tag.classList.add("tagList-span"); ///// modif suite soutenance
     tag.innerHTML = "#" + photographer.tags[i];
     photographerTags.appendChild(tag);
   }

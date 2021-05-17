@@ -89,7 +89,7 @@ function Photographe(data) {
     photographerName.innerHTML =
       '<a href="photograph_page.html?id=' +
       this.id +
-      '"> <img class="photograph-logo" alt="avatar de ' +
+      '"> <img class="photograph-logo" alt="' +
       this.name +
       '" src="public/img/photographID/' +
       this.portrait +
@@ -108,7 +108,8 @@ function Photographe(data) {
       "/jour</em>";
 
     for (let i = 0; i < this.tags.length; i++) {
-      const tag = document.createElement("li");
+      const tag = document.createElement("span"); ///// modif suite soutenance
+      tag.classList.add("tagList-span"); ///// modif suite soutenance
       tag.innerHTML = "#" + this.tags[i];
       photographerTags.appendChild(tag);
     }
